@@ -8,16 +8,34 @@ function decrement() { writeCounter(readCounter() - 1); }
 function setTo(value) { writeCounter(Number(value)); }
 function reset() { setTo(0); }
 
-
 // Mapping between Javascript functions and command line interface
+/*
 {
-  const [_interpreter, _file, operation, value] = process.argv;
+  const [_node, _file, operation, value] = process.argv;
+  console.log('argv', process.argv)
   if (operation === 'increment') { increment(); console.log(`After ${operation}: ${readCounter()}`)}
   else if (operation === 'decrement') { decrement(); console.log(`After ${operation}: ${readCounter()}`)}
   else if (operation === 'set') { setTo(value); console.log(`After ${operation}: ${readCounter()}`)}
   else if (operation === 'reset') { reset(); console.log(`After ${operation}: ${readCounter()}`)}
   else { console.log(`Count is: ${readCounter()}`) }
 }
+*/
+
+/*
+node 00-a-bunch-of-functions.js
+node 00-a-bunch-of-functions.js increment
+node 00-a-bunch-of-functions.js decrement
+node 00-a-bunch-of-functions.js reset
+node 00-a-bunch-of-functions.js set 100
+*/
+
+/*
+GET http://localhost:8080/
+GET http://localhost:8080/increment
+GET http://localhost:8080/decrement
+GET http://localhost:8080/reset
+GET http://localhost:8080/set/100
+*/
 
 // Mapping between Javascript functions and HTTP interface
 {
@@ -47,5 +65,5 @@ function reset() { setTo(0); }
     response.redirect('/')
   });
 
-  // app.listen(PORT, () => { console.log(`Listening on ${PORT}!`)});
+  app.listen(PORT, () => { console.log(`Listening on ${PORT}!`) });
 }
